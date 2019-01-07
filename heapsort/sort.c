@@ -29,6 +29,7 @@ static void heapify(int *ptr, int num, int sz)
 	}
 }
 
+#if 0
 void heapsort(int *ptr, int sz)
 {
 	for (int i = sz/2 - 1; i >= 0; i--)
@@ -37,5 +38,46 @@ void heapsort(int *ptr, int sz)
 	for (int i = sz - 1; i >= 0; i--) {
 		swap(&ptr[0], &ptr[i]);
 		heapify(ptr, 0, i);
+	}
+}
+#endif
+
+/*
+ * heapsort - sort an array of elements;
+ * ptr - pointer to data to sort;
+ * sz - number of elements;
+ */
+void heapsort(int *ptr, int sz)
+{
+	int curr, root;
+
+	/* heapify */
+	for (int i = sz/2 -1 ; i >= 0; i--) {
+		for (root = i; root * 2 + 1 < sz; root = curr) {
+			curr = root * 2 + 1; /* left */
+
+			if (curr < sz - 1 && *(ptr + curr) < *(ptr + curr + 1))
+				curr += 1;	/* right */
+
+			if (*(ptr + curr) <= *(ptr + root))
+				break;
+
+			swap(ptr + root, ptr + curr);
+		}
+	}
+
+	for (int i = sz - 1; i >= 0; i--) {
+		swap(ptr, ptr + i);
+		for (root = 0; root * 2 + 1 < i; root = curr) {
+			curr = root * 2 + 1; /* left */
+
+			if (curr < i - 1 && *(ptr + curr) < *(ptr + curr + 1))
+				curr += 1;	/* right */
+
+			if (*(ptr + curr) <= *(ptr + root))
+				break;
+
+			swap(ptr + root, ptr + curr);
+		}
 	}
 }
