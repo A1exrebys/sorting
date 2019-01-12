@@ -31,7 +31,7 @@ int main(void)
 
 	print_array(head, NITEMS);
 
-	quicksort(head, 0, NITEMS - 1);
+	quicksort3(head, 0, NITEMS - 1);
 
 	print_array(head, NITEMS);
 }
