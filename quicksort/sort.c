@@ -8,9 +8,7 @@ static void swap(int *lhs, int *rhs)
 }
 
 /*
- * heapsort - sort an array of elements;
- * ptr - pointer to data to sort;
- * sz - number of elements;
+ * quicksort - sort an array of elements;
  */
 void quicksort(int *ptr, int low, int high)
 {
