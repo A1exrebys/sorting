@@ -12,5 +12,25 @@ static void swap(int *lhs, int *rhs)
  */
 void quicksort(int *ptr, int low, int high)
 {
+	int pivot = ptr[(low + high) / 2];
+	int l = low;
+	int h = high;
 
+	while (l <= h) {
+		while (ptr[l] < pivot)
+			l++;
+
+		while (ptr[h] > pivot)
+			h--;
+
+		if (l <= h) {
+			swap((ptr + l), (ptr + h));
+			l++; h--;
+		}
+	}
+
+	if (low < h)
+		quicksort(ptr, low, h);
+	if (l < high)
+		quicksort(ptr, l, high);
 }
